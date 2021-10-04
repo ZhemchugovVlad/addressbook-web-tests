@@ -38,6 +38,11 @@ namespace WebAdressbookTests
             FillGroupForm("aaa", "bbb", "ccc");
             SubmitGroupCreation();
             ReturnToGroupsPage();
+            Logout();
+        }
+
+        private void Logout()
+        {
             driver.FindElement(By.LinkText("Logout")).Click();
         }
 
