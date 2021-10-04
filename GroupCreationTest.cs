@@ -32,35 +32,43 @@ namespace WebAdressbookTests
         public void GroupCreationTest()
         {
             OpenHomePage();
-            Login("admin", "secret");
+            Login(new AccountData("admin", "secret"));
             GoToGroupsPage();
             InitGroupCreation();
-            FillGroupForm("aaa", "bbb", "ccc");
+            GroupData group = new GroupData("aaa");
+            group.Header = "bbb";
+            group.Footer = "fff";
+            FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
-            driver.FindElement(By.LinkText("Logout")).Click();
+            Logout();
+        }
+
+        private void Logout()
+        {
+            driver.FindElement(By.CssSelector("div[id='top'] a[href='#']")).Click();
         }
 
         private void ReturnToGroupsPage()
         {
-            driver.FindElement(By.LinkText("group page")).Click();
+            driver.FindElement(By.CssSelector("a[href='group.php']")).Click();
         }
 
         private void SubmitGroupCreation()
         {
-            driver.FindElement(By.Name("submit")).Click();
+            driver.FindElement(By.CssSelector("input[type='submit']")).Click();
         }
 
-        private void FillGroupForm(string name, string header, string footer)
+        private void FillGroupForm(GroupData group)
         {
-            driver.FindElement(By.Name("group_name")).SendKeys(name);
-            driver.FindElement(By.Name("group_header")).SendKeys(header);
-            driver.FindElement(By.Name("group_footer")).SendKeys(footer);
+            driver.FindElement(By.CssSelector("input[type='text']")).SendKeys(group.Name);
+            driver.FindElement(By.CssSelector("[id='content'] textarea[name='group_header']")).SendKeys(group.Header);
+            driver.FindElement(By.CssSelector("[id='content'] textarea[name='group_footer']")).SendKeys(group.Footer);
         }
 
         private void InitGroupCreation()
         {
-            driver.FindElement(By.Name("new")).Click();
+            driver.FindElement(By.CssSelector("[id='content'] form[method='post'] input[type='submit']")).Click();
         }
 
         private void GoToGroupsPage()
@@ -68,10 +76,10 @@ namespace WebAdressbookTests
             driver.FindElement(By.LinkText("groups")).Click();
         }
 
-        private void Login(string username, string password)
+        private void Login(AccountData account)
         {
-            driver.FindElement(By.Name("user")).SendKeys("admin");
-            driver.FindElement(By.Name("pass")).SendKeys("secret");
+            driver.FindElement(By.CssSelector("[id='LoginForm'] input[name='user']")).SendKeys(account.Username);
+            driver.FindElement(By.CssSelector("[id='LoginForm'] input[name='pass']")).SendKeys(account.Password);
             driver.FindElement(By.CssSelector("[id='LoginForm'] input[type='submit']")).Click();
         }
 
