@@ -38,11 +38,6 @@ namespace WebAdressbookTests
             FillGroupForm("aaa", "bbb", "ccc");
             SubmitGroupCreation();
             ReturnToGroupsPage();
-            Logout();
-        }
-
-        private void Logout()
-        {
             driver.FindElement(By.LinkText("Logout")).Click();
         }
 
@@ -58,9 +53,9 @@ namespace WebAdressbookTests
 
         private void FillGroupForm(string name, string header, string footer)
         {
-            driver.FindElement(By.CssSelector("group_name")).SendKeys(name);
-            driver.FindElement(By.CssSelector("group_header")).SendKeys(header);
-            driver.FindElement(By.CssSelector("group_footer")).SendKeys(footer);
+            driver.FindElement(By.Name("group_name")).SendKeys(name);
+            driver.FindElement(By.Name("group_header")).SendKeys(header);
+            driver.FindElement(By.Name("group_footer")).SendKeys(footer);
         }
 
         private void InitGroupCreation()
