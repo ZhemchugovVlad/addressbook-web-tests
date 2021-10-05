@@ -46,7 +46,7 @@ namespace WebAdressbookTests
 
         private void Logout()
         {
-            driver.FindElement(By.CssSelector("div[id='top'] a[href='#']")).Click();
+            driver.FindElement(By.CssSelector("form[name='logout'] a")).Click();
         }
 
         private void ReturnToGroupsPage()
@@ -62,13 +62,13 @@ namespace WebAdressbookTests
         private void FillGroupForm(GroupData group)
         {
             driver.FindElement(By.CssSelector("input[type='text']")).SendKeys(group.Name);
-            driver.FindElement(By.CssSelector("[id='content'] textarea[name='group_header']")).SendKeys(group.Header);
-            driver.FindElement(By.CssSelector("[id='content'] textarea[name='group_footer']")).SendKeys(group.Footer);
+            driver.FindElement(By.CssSelector("form [name='group_header']")).SendKeys(group.Header);
+            driver.FindElement(By.CssSelector("form [name='group_footer']")).SendKeys(group.Footer);
         }
 
         private void InitGroupCreation()
         {
-            driver.FindElement(By.CssSelector("[id='content'] form[method='post'] input[type='submit']")).Click();
+            driver.FindElement(By.CssSelector("[id='content'] input[name='new']")).Click();
         }
 
         private void GoToGroupsPage()
