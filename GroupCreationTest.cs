@@ -46,7 +46,7 @@ namespace WebAdressbookTests
 
         private void Logout()
         {
-            driver.FindElement(By.CssSelector("form[name='logout'] a")).Click();/// Тестовый комментарий йдля GIT
+            driver.FindElement(By.CssSelector("form[name='logout'] a")).Click();
         }
 
         private void ReturnToGroupsPage()
