@@ -56,7 +56,7 @@ namespace WebAdressbookTests
 
         private void SelectGroup()
         {
-            driver.FindElement(By.CssSelector("[class='group'] input[type='checkbox']")).Click(); ///Выбирает первый чекбокс Как сделать атк что бы выбирался нужный мне !?
+            driver.FindElement(By.CssSelector("[class='group'] input[type='checkbox']")).Click();
         }
 
         private void GoToGroupsPage()
