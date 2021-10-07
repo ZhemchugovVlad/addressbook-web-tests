@@ -69,7 +69,7 @@ namespace WebAdressbookTests
         }
         protected void RemoveGroup()
         {
-            driver.FindElement(By.CssSelector("[method='post'] input[name='delete']")).Click();
+            driver.FindElement(By.CssSelector("[method='post'] input[name='delete']")).Click();/// какой то комментарий 
         }
     }
 }
