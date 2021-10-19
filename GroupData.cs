@@ -6,36 +6,15 @@ namespace WebAdressbookTests
 {
     public class GroupData
     {
-        private string name;
-        private string header = "";
-        private string footer = "";
+        public string Name { get; set; }
+        public string Header { get; set; } =  "";
+        public string Footer { get; set; } = "";
 
-        public GroupData(string name)
+        public GroupData(string name, string header, string footer)
         {
-            this.name = name;
+            Name = name;
+            Header = header;
+            Footer = footer;
         }
-       
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-
-
-        public string Header
-        {
-            get { return header; }
-            set { header = value; }
-        }
-
-        public string Footer
-        {
-            get { return footer; }
-            set { footer = value; }
-        }
-    
     }
-
-
 }

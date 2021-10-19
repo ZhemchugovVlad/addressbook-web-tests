@@ -17,10 +17,12 @@ namespace WebAdressbookTests
     public class TestBase
     {
         protected IWebDriver driver;
+        private string baseURL;
         [SetUp]
         public void SetupTest()
         {
             driver = new ChromeDriver();
+            baseURL = "http://localhost";
         }
         [TearDown]
         protected void TearDown()
@@ -29,7 +31,7 @@ namespace WebAdressbookTests
         }
         protected void OpenHomePage()
         {
-            driver.Navigate().GoToUrl("http://localhost/addressbook/");
+            driver.Navigate().GoToUrl(baseURL + "/addressbook");
         }
         protected void Login(AccountData account)
         {
@@ -43,13 +45,13 @@ namespace WebAdressbookTests
         }
         protected void FillGroupForm(GroupData group)
         {
-            driver.FindElement(By.CssSelector("input[type='text']")).SendKeys(group.Name);
+            driver.FindElement(By.CssSelector("form [name='group_name']")).SendKeys(group.Name);
             driver.FindElement(By.CssSelector("form [name='group_header']")).SendKeys(group.Header);
             driver.FindElement(By.CssSelector("form [name='group_footer']")).SendKeys(group.Footer);
         }
         protected void SubmitGroupCreation()
         {
-            driver.FindElement(By.CssSelector("input[type='submit']")).Click();
+            driver.FindElement(By.CssSelector("input[name='submit']")).Click();
         }
         protected void InitGroupCreation()
         {
@@ -69,7 +71,7 @@ namespace WebAdressbookTests
         }
         protected void RemoveGroup()
         {
-            driver.FindElement(By.CssSelector("[method='post'] input[name='delete']")).Click();/// какой то комментарий 
+            driver.FindElement(By.CssSelector("[method='post'] input[name='delete']")).Click();
         }
     }
 }
